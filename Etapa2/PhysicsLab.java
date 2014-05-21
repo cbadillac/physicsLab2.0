@@ -2,6 +2,11 @@ import javax.swing.*;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Font;
+
+import javax.swing.*;
+
+import java.awt.event.*;
 
 public class PhysicsLab {
    public static void main(String[] args) {
@@ -22,7 +27,7 @@ class PhysicsLab_GUI extends JFrame {
       add(createLabMenuBar(menuListener),BorderLayout.NORTH);
       world.setView(worldView);
       add(worldView);  
-      createConfiguration(world);
+//    createConfiguration(world);
       
       
       /*  .....   */;
@@ -39,12 +44,35 @@ class PhysicsLab_GUI extends JFrame {
       JMenuItem menuItem = new JMenuItem("Ball");
       menuItem.addActionListener(menu_l);
       subMenu.add(menuItem);
+      
+      JMenuItem menuScenario = new JMenuItem("My scenario");
+      menuScenario.addActionListener(menu_l);
+      subMenu.add(menuScenario);
+      
+      
  /*....*/      
       menu = new JMenu("MyWorld");
       mb.add(menu);
       menuItem = new JMenuItem("Start");
       menuItem.addActionListener(menu_l);
       menu.add(menuItem);
+      
+      JMenuItem menuStop = new JMenuItem("Stop");
+      menuStop.addActionListener(menu_l);
+      menu.add(menuStop);
+      
+      JMenu menuSimulator = new JMenu("Simulator");
+      menu.add(menuSimulator);
+      
+      JMenuItem subMenuRefreshTime = new JMenuItem("View Refresh time");
+      subMenuRefreshTime.addActionListener(menu_l);
+      menuSimulator.add(subMenuRefreshTime);
+      
+      JMenuItem subMenuDeltaTime = new JMenuItem("Delta time");
+      subMenuDeltaTime.addActionListener(menu_l);
+      menuSimulator.add(subMenuDeltaTime);
+      
+      
 /* ...*/
       return mb;          
    }
@@ -58,6 +86,7 @@ class PhysicsLab_GUI extends JFrame {
 	      Ball b1 = new Ball(mass, radius, 2.0, 0);
 	      world.addElement(b0);
 	      world.addElement(b1);
-	      world.start();
+	      
 	   }
+   
 }
