@@ -1,5 +1,6 @@
-import javax.swing.JFrame;
 import javax.swing.*;
+
+import java.awt.BorderLayout;
 import java.awt.Container;
 
 public class PhysicsLab {
@@ -17,8 +18,9 @@ class PhysicsLab_GUI extends JFrame {
       MyWorld world = new MyWorld();
       MyWorldView  worldView = new MyWorldView(world);
       world.setView(worldView);
-      add(worldView);
+      add(worldView);    
       createConfiguration(world);
+      
    }
    private void createConfiguration(MyWorld world) {  // Please note how similar it is to "Etapa 4" of T1
       double mass = 1.0;      // 1 [kg] 
@@ -29,5 +31,6 @@ class PhysicsLab_GUI extends JFrame {
       Ball b1 = new Ball(mass, radius, 2.0, 0);
       world.addElement(b0);
       world.addElement(b1);
+      world.start();
    }
 }

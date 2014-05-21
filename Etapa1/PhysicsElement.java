@@ -11,6 +11,7 @@ public abstract class PhysicsElement {
    }
    public abstract String getDescription();
    public abstract String getState();
+   public abstract void draw(Graphics2D g);
    public abstract void updateView(Graphics2D g);
    public abstract boolean contains(double x, double y);
    public abstract void setSelected();

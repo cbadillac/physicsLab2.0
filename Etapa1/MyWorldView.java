@@ -46,6 +46,11 @@ public class MyWorldView extends JPanel {
       g2.setStroke(new BasicStroke(0.02f));
       g2.draw(X_AXIS);
       g2.draw(Y_AXIS);
+      
+      ArrayList<PhysicsElement> elements = world.getPhysicsElements();
+      for (PhysicsElement e : elements){
+    	  e.draw(g2);
+      }
       /* .......*/      
    }
 }

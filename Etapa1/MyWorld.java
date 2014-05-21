@@ -60,6 +60,7 @@ public class MyWorld implements ActionListener {
                Simulateable s = (Simulateable) e;
                s.updateState();            // update its state
             }
+         this.view.repaint();
       }
  
    }

@@ -62,6 +62,12 @@ public class Ball extends PhysicsElement implements Simulateable {
    public boolean contains(double x, double y) {
       return view.contains(x,y);
    }
+   public void draw(Graphics2D g){
+	   view.draw(g);
+   }
+   public void setView(BallView b){
+	   this.view = b;
+   }
    public void setSelected(){
       view.setSelected();
    }
