@@ -1,5 +1,6 @@
-import javax.swing.JFrame;
 import javax.swing.*;
+
+import java.awt.BorderLayout;
 import java.awt.Container;
 
 public class PhysicsLab {
@@ -13,12 +14,17 @@ public class PhysicsLab {
 class PhysicsLab_GUI extends JFrame {
    public PhysicsLab_GUI() {
       setTitle("My Small and Nice Physics Laboratory");
-      setSize(MyWorldView.WIDTH, MyWorldView.HEIGHT+50);  // height+50 to account for menu height
+      setSize(MyWorldView.WIDTH, MyWorldView.HEIGHT+100);  // height+50 to account for menu height
       MyWorld world = new MyWorld();
       MyWorldView  worldView = new MyWorldView(world);
+      setLayout(new BorderLayout());
+      LabMenuListener menuListener = new LabMenuListener(world);
+      add(createLabMenuBar(menuListener),BorderLayout.NORTH);
       world.setView(worldView);
       add(worldView);  
-      LabMenuListener menuListener = new LabMenuListener(world);
+      createConfiguration(world);
+      
+      
       /*  .....   */;
    }
 
@@ -41,5 +47,17 @@ class PhysicsLab_GUI extends JFrame {
       menu.add(menuItem);
 /* ...*/
       return mb;          
-   }   
+   }
+   
+   private void createConfiguration(MyWorld world) {  // Please note how similar it is to "Etapa 4" of T1
+	      double mass = 1.0;      // 1 [kg] 
+	      double radius = 0.1;    // 10 [cm] 
+	      double position = 0.0;  // 1 [m] 
+	      double speed = 0.5;     // 0.5 [m/s]
+	      Ball b0 = new Ball(mass, radius, position, speed);
+	      Ball b1 = new Ball(mass, radius, 2.0, 0);
+	      world.addElement(b0);
+	      world.addElement(b1);
+	      world.start();
+	   }
 }
