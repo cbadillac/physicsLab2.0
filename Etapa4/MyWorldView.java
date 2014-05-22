@@ -1,4 +1,4 @@
-import javax.swing.JPanel;
+ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.*; 
@@ -28,4 +28,5 @@ public class MyWorldView extends JPanel {
       removeMouseMotionListener(mListener);
       removeMouseListener(mListener);
    }
+
 }
