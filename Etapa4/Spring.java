@@ -6,6 +6,7 @@ public class Spring extends PhysicsElement implements Simulateable{
    private final double stiffness;
    private SpringAttachable a_end, b_end;
    private double aLoosePosition, bLoosePosition;
+   private double xLoosePosition1, xLoosePosition2;
    
    
    
@@ -22,6 +23,8 @@ public class Spring extends PhysicsElement implements Simulateable{
       aLoosePosition=0;
       bLoosePosition=restLength;
       view = new SpringView(this);
+      xLoosePosition1 = 0;
+      xLoosePosition2 = 0;
    }
    public void attachAend (SpringAttachable sa) {  // note: we attach a spring to a ball, 
       if(a_end!=null)                              // not the other way around.
@@ -73,7 +76,8 @@ public class Spring extends PhysicsElement implements Simulateable{
       double b_pos = getBendPosition();
       double stretch = Math.abs(b_pos-a_pos)-restLength;
       force = stretch*stiffness;
-      if ((ball==a_end)) return -force;
+      
+      if ((ball==b_end)^(a_pos>b_pos)) return -force;
       return force;
    }
    public void updateView (Graphics2D g){
@@ -104,7 +108,15 @@ public class Spring extends PhysicsElement implements Simulateable{
   
   @Override
    public void dragTo(double x) {
-	   // TODO Auto-generated method stub
+	   if (xLoosePosition1 == 0){
+		   xLoosePosition1  = x;
+		   return;
+	   }
+	   xLoosePosition2 = x;
+	   aLoosePosition += (xLoosePosition2 - xLoosePosition1);
+	   bLoosePosition += (xLoosePosition2 - xLoosePosition1);
+	   xLoosePosition1 = xLoosePosition2;
+	   
 	
    }
   

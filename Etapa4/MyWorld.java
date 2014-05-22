@@ -1,6 +1,8 @@
 import java.util.*;
 import java.io.*;
+
 import javax.swing.Timer;
+
 import java.awt.event.*;
 
 public class MyWorld implements ActionListener {
@@ -84,8 +86,19 @@ public class MyWorld implements ActionListener {
    }
    
    public PhysicsElement find(double x, double y) {
-      for (PhysicsElement e: elements)
-            if (e.contains(x,y)) return e;
+      for (PhysicsElement e: elements){    	  
+    	  if (e.contains(x,y)){
+    		  
+    		  return e;
+          }
+      }
+    	  
       return null;
+   }
+   public SpringAttachable findAttachableElement(double x) {
+	   for(PhysicsElement e: elements){
+		   if(e.contains(x, 0) && !(e instanceof Spring)) return (SpringAttachable)e;
+	   }
+	   return null;
    }  
 } 

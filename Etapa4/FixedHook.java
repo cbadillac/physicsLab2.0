@@ -38,7 +38,7 @@ public class FixedHook extends PhysicsElement implements SpringAttachable, Simul
 	@Override
 	public double getPosition() {
 		// TODO Auto-generated method stub
-		return this.position + 2*this.ancho;
+		return this.position;
 	}
 
 	@Override
@@ -72,24 +72,26 @@ public class FixedHook extends PhysicsElement implements SpringAttachable, Simul
 	@Override
 	public boolean contains(double x, double y) {
 		// TODO Auto-generated method stub
-		return false;
+		return view.contains(x, y);
 	}
 
 	@Override
 	public void setSelected() {
+		view.setSelected();
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void setReleased() {
+		view.setReleased();
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void dragTo(double x) {
-		// TODO Auto-generated method stub
+		position = x;
 		
 	}
 /* to be coded

@@ -28,6 +28,7 @@ class PhysicsLab_GUI extends JFrame {
       world.setView(worldView);
       add(worldView);  
 //    createConfiguration(world);
+      worldView.enableMouseListener();
       
       
       /*  .....   */;
@@ -45,9 +46,23 @@ class PhysicsLab_GUI extends JFrame {
       menuItem.addActionListener(menu_l);
       subMenu.add(menuItem);
       
+      JMenuItem menuFixedHook = new JMenuItem("Fixed Hook");
+      menuFixedHook.addActionListener(menu_l);
+      subMenu.add(menuFixedHook);
+      
+      JMenuItem menuSpring = new JMenuItem("Spring");
+      menuSpring.addActionListener(menu_l);
+      subMenu.add(menuSpring);
+      
+      
+      
       JMenuItem menuScenario = new JMenuItem("My scenario");
       menuScenario.addActionListener(menu_l);
       subMenu.add(menuScenario);
+      
+      
+      
+      
       
       
  /*....*/      

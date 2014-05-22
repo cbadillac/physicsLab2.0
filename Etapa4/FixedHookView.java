@@ -20,8 +20,12 @@ public class FixedHookView {
 	   
 	   
 	   public boolean contains (double x, double y){
-	      // to be coded
-		   return false;
+		  
+		   double radius = hook.getRadius();
+		   boolean yCondition = (y >= -radius && y <= radius);
+		   boolean xCondition = ( x >= hook.getPosition()-radius && x<= hook.getPosition()+radius);
+		   return ( yCondition && xCondition) ;
+		   
 	   }
 	   public void setSelected (){
 	      color = Color.RED;
