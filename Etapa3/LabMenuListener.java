@@ -17,13 +17,17 @@ public class LabMenuListener implements ActionListener {
       if (text.equals("My scenario")) {  // here you define Etapa2's configuration
     	  double mass = 1.0;      // 1 [kg] 
 	      double radius = 0.1;    // 10 [cm] 
-	      double position = 0.0;  // 1 [m] 
-	      double speed = 0.5;     // 0.5 [m/s]
+	      double position = 3.0;  // 1 [m] 
+	      double speed = 0;     // 0.5 [m/s]
 	      Ball b0 = new Ball(mass, radius, position, speed);
-	      Ball b1 = new Ball(mass, radius, 2.0, 0);
+	      FixedHook f1 = new FixedHook(0.1, 1);
+	      Spring s = new Spring(1,50);
+	      s.attachAend(b0);
+	      s.attachBend(f1);
 	      world.addElement(b0);
-	      world.addElement(b1);
-	      //world.repaintView();
+	      world.addElement(s);
+	      world.addElement(f1);
+	      world.repaintView();
       }
       if (text.equals("Ball")) {
         // nothing by now       

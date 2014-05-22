@@ -49,7 +49,9 @@ public class MyWorldView extends JPanel {
       
       ArrayList<PhysicsElement> elements = world.getPhysicsElements();
       for (PhysicsElement e : elements){
-    	  e.draw(g2);
+   		  e.draw(g2); 
+    	  
+    	  
       }
       /* .......*/      
    }

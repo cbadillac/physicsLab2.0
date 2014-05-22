@@ -51,5 +51,20 @@ public class SpringView {
    public void setReleased() {
       /* .... */
    }
+   
+   public void draw(Graphics2D g){
+	   double ax=spring.getAendPosition();
+	      double xa_b = spring.getBendPosition() - spring.getAendPosition();
+	      AffineTransform at = AffineTransform.getTranslateInstance(ax, 0);
+	      at.rotate(xa_b, 0);
+	      at.scale(Math.abs(xa_b),  spring.getRestLength());
+	      shape = (Path2D.Double) at.createTransformedShape(polyline);
+	      if (Math.abs(xa_b) < spring.getRestLength())
+	         g.setColor(Color.BLACK);
+	      else
+	         g.setColor(Color.RED);
+	      g.setStroke(stroke);
+	      g.draw(shape);
+   }
 
 }

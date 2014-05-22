@@ -1,11 +1,13 @@
 import java.awt.*;
 
-public class Spring extends PhysicsElement {
+public class Spring extends PhysicsElement implements Simulateable{
    private static int id=0;  // Spring identification
    private final double restLength;
    private final double stiffness;
    private SpringAttachable a_end, b_end;
    private double aLoosePosition, bLoosePosition;
+   
+   
    
    private SpringView view;
 
@@ -71,7 +73,7 @@ public class Spring extends PhysicsElement {
       double b_pos = getBendPosition();
       double stretch = Math.abs(b_pos-a_pos)-restLength;
       force = stretch*stiffness;
-      if ((ball==a_end)^(a_pos<b_pos)) return -force;
+      if ((ball==a_end)) return -force;
       return force;
    }
    public void updateView (Graphics2D g){
@@ -93,4 +95,30 @@ public class Spring extends PhysicsElement {
       String s = getAendPosition() + "\t" + getBendPosition();
       return s;
    }
+   
+  @Override
+   public void draw(Graphics2D g) {
+	   view.draw(g);
+	
+   }
+  
+  @Override
+   public void dragTo(double x) {
+	   // TODO Auto-generated method stub
+	
+   }
+  
+   @Override
+   public void computeNextState(double delta_t, MyWorld w) {
+	   // TODO Auto-generated method stub
+	
+   }
+   @Override
+   public void updateState() {
+	   // TODO Auto-generated method stub
+	
+   }
+
+	
+
 }
