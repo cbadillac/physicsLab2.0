@@ -64,9 +64,9 @@ public class SpringView {
 	      at.scale(Math.abs(xa_b),  spring.getRestLength());
 	      shape = (Path2D.Double) at.createTransformedShape(polyline);
 	      if (Math.abs(xa_b) < spring.getRestLength())
-	         g.setColor(Color.BLACK);
-	      else
 	         g.setColor(Color.RED);
+	      else
+	         g.setColor(Color.BLACK);
 	      g.setStroke(stroke);
 	      g.draw(shape);
    }

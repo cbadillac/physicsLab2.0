@@ -19,9 +19,9 @@ public class PhysicsLab {
 
 class PhysicsLab_GUI extends JFrame {
    public PhysicsLab_GUI() {
-	  MyWorld world = new MyWorld();
-      MyWorldView  worldView = new MyWorldView(world);
-      LabMenuListener menuListener = new LabMenuListener(world);
+	  MyWorld world 				= new MyWorld();
+      MyWorldView  worldView 		= new MyWorldView(world);
+      LabMenuListener menuListener= new LabMenuListener(world);
       
       setTitle("My Small and Nice Physics Laboratory!");
       setSize(MyWorldView.WIDTH, MyWorldView.HEIGHT+100);  // height+50 to account for menu height
@@ -61,7 +61,7 @@ class PhysicsLab_GUI extends JFrame {
       menuScenario.addActionListener(menu_l);
       subMenu.add(menuScenario);
       
-	/*....*/      
+	/*....*/
       menu = new JMenu("MyWorld");
       mb.add(menu);
       menuItem = new JMenuItem("Start");

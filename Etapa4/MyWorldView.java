@@ -8,7 +8,7 @@ import java.util.*;
 
 public class MyWorldView extends JPanel { 
 	// BEGIN declarations to use metric coordinate system (not pixels)
-	   public static int WIDTH 	= 900;	// in pixels
+	   public static int WIDTH 	= 1100;	// in pixels
 	   public static int HEIGHT 	= 150;	// in pixels
 	   public static int X_ORIGEN = (int)(WIDTH*0.1);		// MyWorld space origen (x,y) will be on
 	   public static int Y_ORIGEN = (int)(HEIGHT*0.9); 	// (X_ORIGEN,Y_ORIGEN) of the panel space.

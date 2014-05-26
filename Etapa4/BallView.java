@@ -24,7 +24,7 @@ public class BallView {
 	   double radius = ball.getRadius();
 	   boolean yCondition = (y >= -radius && y <= radius);
 	   boolean xCondition = ( x >= ball.getPosition()-radius && x<= ball.getPosition()+radius);
-	   return ( yCondition && xCondition) ;
+	   return ( yCondition && xCondition);
    }
    
    public void setSelected (){
