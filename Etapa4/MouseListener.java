@@ -38,7 +38,8 @@ public class MouseListener extends MouseAdapter {
 	  MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);	// pixels to meters
 	  PhysicsElement newElement = world.find(p.getX(), p.getY());
 	  
-	  System.out.println(newElement);
+	  
+	  
 	  
 	  this.currentElement = newElement;
 	  currentElement.setSelected();
