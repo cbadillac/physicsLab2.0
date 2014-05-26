@@ -76,13 +76,11 @@ public class MouseListener extends MouseAdapter {
             if (ans == 0) { //	"Yes"
 				Spring spring = (Spring) element;
 				double a=spring.getAendPosition();
-				if (currentElement.contains(a,0)) {
+				if (currentElement.contains(a,0))
 				   spring.attachAend((SpringAttachable)currentElement);
-				   System.out.println("asdasd>>>>");}
 				double b=spring.getBendPosition();
-				if (currentElement.contains(b,0)){
+				if (currentElement.contains(b,0))
 				   spring.attachBend((SpringAttachable)currentElement);
-				   System.out.println("asdasd<<<<<");}
 			}
          }
       }

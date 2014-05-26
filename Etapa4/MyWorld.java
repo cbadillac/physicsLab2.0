@@ -73,13 +73,17 @@ public class MyWorld implements ActionListener {
    }
    
    public PhysicsElement find(double x, double y) {
+	   PhysicsElement someSpring = null;
       for (PhysicsElement e: elements) {
-    	  if (e.contains(x,y)) {		  
-    		  return e;
+    	  if (e.contains(x,y)) {
+			  if( e instanceof	 Spring)
+				someSpring = e;
+			  else	
+				return e;
           }
       }
     	  
-      return null;
+      return someSpring;
    }
 
    public Ball findCollidingBall(Ball me) {

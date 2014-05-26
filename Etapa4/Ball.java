@@ -2,13 +2,15 @@ import java.util.*;
 import java.awt.*;
 
 /**
- * Clase para crear instancias del objeto físico "Ball", simulando el
- * comportamiento de una pelota con choque elástico. Es visualizable en una
- * GUI al implementar <i>Simulateable</i>, pudiendo dibujarse a si misma.
+ * Clase para crear instancias del objeto físico <code>Ball</code>, 
+ * simulando el comportamiento de una pelota con choque elástico. Es
+ * visualizable en una GUI al implementar <i>Simulateable</i>, pudiendo
+ * dibujarse a si misma.
  * 
  * Almacena un ID, su masa, radio, posición y velocidad, su vista y valores
  * necesarios para computar su próximo estado.
  * 
+ * @author Agustin Gonzalez
  * @author Cristobal Badilla
  * @author Roberto Farías
  * @author Cristóbal Ramírez
@@ -153,45 +155,52 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    }
    
    /**
-    * @param x 
-    * @param y
-    * @return 	<code>true</code>.
-    * 			<code>false</code>.
+    * Permite saber si un punto <i>(x,y)</i> está contenido en el círculo que
+    * representa a la pelota.
+    * 
+    * @param x 	coordenada <i>x</i>
+    * @param y 	coordenada <i>y</i>
+    * @return 		<code>true</code> si punto <i>(x,y)</i> pertenece al círculo de la pelota.
+    * 				<code>false</code> en caso contrario.
     */
    public boolean contains(double x, double y) {
       return view.contains(x,y);
    }
    
    /**
-    * @param g
+    * Pide dibujarse al <code>View</code> de la pelota.
+    * 
+    * @param g		Un elemento <code>Graphics2D Ball</code>
     */
    public void draw(Graphics2D g){
 	   view.draw(g);
    }
    
    /**
-    * @param b
+    * Asigna el <code>View b</code> a la pelota.
+    * 
+    * @param b		Nueva <code>View</code> de la pelota
     */
    public void setView(BallView b){
 	   this.view = b;
    }
    
    /**
-    * 
+    * Agarra el <code>View</code> de la pelota.
     */
    public void setSelected(){
       view.setSelected();
    }
    
    /**
-    * 
+    * Suelta el <code>View</code> de la pelota.
     */
    public void setReleased(){
       view.setReleased();
    }
    
    /**
-    * 
+    * @param x		coordenada <i>x</i>
     */
    public void dragTo(double x){
       pos_t=x;
@@ -216,7 +225,9 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    }
    
    /**
-    * @return	Devuelve fuerza neta hecha por los resorte adjuntados
+    * Permite conocer fuerza neta hecha por los resortes sobre pelota.
+    * 
+    * @return	Fuerza neta hecha por los resorte adjuntados
     * 			a la pelota.
     */
    private double getNetForce() {
@@ -238,6 +249,8 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    
    /**
     * Elimina resorte ya adjuntado.
+    * 
+    * @param s		Resorte a desatachar
     */
    @Override
    public void detachSpring(Spring s) {
