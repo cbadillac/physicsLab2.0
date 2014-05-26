@@ -62,9 +62,9 @@ public class MyWorld implements ActionListener {
       out = output;
       t = 0;
       refreshPeriod = 0.06;      	// 60 [ms]
-      delta_t = 0.00001;          	// 0.01 [ms]
-      elements = new ArrayList<PhysicsElement>();
-      view = null;
+      delta_t 	= 0.00001;          	// 0.01 [ms]
+      elements 	= new ArrayList<PhysicsElement>();
+      view 		= null;
       passingTime = new Timer((int)(refreshPeriod*1000), this);
    }
    
