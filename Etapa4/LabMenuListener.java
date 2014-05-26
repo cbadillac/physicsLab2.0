@@ -11,7 +11,7 @@ public class LabMenuListener implements ActionListener {
    public void actionPerformed(ActionEvent e) {
       JMenuItem menuItem = (JMenuItem)(e.getSource());
       String text = menuItem.getText();
-      System.out.println(text);
+      
       
       if (text.equals("Stop")) {
     	  world.stop();
