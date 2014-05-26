@@ -71,6 +71,16 @@ public class MyWorld implements ActionListener {
    public void repaintView(){
       view.repaintView();
    }
+   
+   public PhysicsElement find(double x, double y) {
+      for (PhysicsElement e: elements) {
+    	  if (e.contains(x,y)) {		  
+    		  return e;
+          }
+      }
+    	  
+      return null;
+   }
 
    public Ball findCollidingBall(Ball me) {
       for (PhysicsElement e: elements)
@@ -85,16 +95,6 @@ public class MyWorld implements ActionListener {
       return elements;
    }
    
-   public PhysicsElement find(double x, double y) {
-      for (PhysicsElement e: elements){    	  
-    	  if (e.contains(x,y)){
-    		  
-    		  return e;
-          }
-      }
-    	  
-      return null;
-   }
    public SpringAttachable findAttachableElement(double x) {
 	   for(PhysicsElement e: elements){
 		   if(e.contains(x, 0) && !(e instanceof Spring)) return (SpringAttachable)e;

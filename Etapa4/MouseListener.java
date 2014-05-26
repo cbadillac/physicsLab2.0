@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 public class MouseListener extends MouseAdapter {
    private MyWorld world;
    private PhysicsElement currentElement;
+   
    public MouseListener (MyWorld w){
       world = w;
    } 
@@ -28,16 +29,23 @@ public class MouseListener extends MouseAdapter {
       }
       world.repaintView();
    }
+   public void mousePressed(MouseEvent e) {
+	   Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
+	      
+	  MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters
+	  PhysicsElement newElement = world.find(p.getX(), p.getY());
+	  
+	  this.currentElement = newElement;
+   }
    public void mouseDragged(MouseEvent e) {
 	   Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
 	      
 	      MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters
-	      PhysicsElement newElement = world.find(p.getX(), p.getY()); 
-	      if (newElement != null){
-	    	  newElement.dragTo(p.getX());
+	      
+	      if (currentElement != null) {			  
+	    	  currentElement.dragTo(p.getX());
 	    	  world.repaintView();
 	      }
-      
    }
    public void mouseReleased(MouseEvent e) {
       if (currentElement == null) return;
@@ -58,10 +66,12 @@ public class MouseListener extends MouseAdapter {
             double b=spring.getBendPosition();
             if (b==p.getX())
                spring.attachBend(element);
-          }
-      }    
+         }
+      }
+       
       currentElement.setReleased();
       currentElement = null;
+      
       world.repaintView();
    }
 }
