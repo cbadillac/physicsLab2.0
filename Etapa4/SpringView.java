@@ -75,5 +75,4 @@ public class SpringView {
 	  g.setStroke(stroke);
 	  g.draw(shape);
    }
-
 }

@@ -6,7 +6,7 @@ import java.awt.geom.*;
 import java.awt.*;
 import java.util.*;
 
-public class MyWorldView extends JPanel { 
+public class MyWorldView extends JPanel{ 
 	// BEGIN declarations to use metric coordinate system (not pixels)
 	   public static int WIDTH 	= 1100;	// in pixels
 	   public static int HEIGHT 	= 150;	// in pixels
@@ -32,8 +32,8 @@ public class MyWorldView extends JPanel {
 //.....
 // The same as Stage 3.
 //....
-	   private MyWorld world;
-	   private MouseListener mListener;
+   private MyWorld world;
+   private MouseListener mListener;
    
    public MyWorldView(MyWorld w){
       world 	= w;
@@ -41,6 +41,10 @@ public class MyWorldView extends JPanel {
       addMouseMotionListener(mListener);
       addMouseListener(mListener);
    }
+
+   public void repaintView(){
+	     repaint();
+	}
 	   
    public void paintComponent(Graphics g){
 	  Graphics2D g2 = (Graphics2D)g;

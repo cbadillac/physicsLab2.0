@@ -16,8 +16,7 @@ public class FixedHookView {
 		   shape = new Rectangle2D.Double(hook.getPosition()-radius, -radius, 2*radius, 2*radius);
 		   g.setColor(color);
 		   g.fill(shape);
-	   }
-	   
+	   }	   
 	   
 	   public boolean contains (double x, double y){
 		  
