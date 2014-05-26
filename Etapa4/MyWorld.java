@@ -21,8 +21,8 @@ public class MyWorld implements ActionListener {
    public MyWorld(PrintStream output){
       out = output;
       t = 0;
-      refreshPeriod = 0.06;      // 60 [ms]
-      delta_t = 0.00001;          // 0.01 [ms]
+      refreshPeriod = 0.06;      	// 60 [ms]
+      delta_t = 0.00001;          	// 0.01 [ms]
       elements = new ArrayList<PhysicsElement>();
       view = null;
       passingTime = new Timer((int)(refreshPeriod*1000), this);    
@@ -92,6 +92,8 @@ public class MyWorld implements ActionListener {
             Ball b = (Ball) e;
             if ((b!=me) && b.collide(me)) return b;
          }else if( e instanceof FixedHook) {
+			 if( !((FixedHook)e).isCollidable()) return null;
+			 
 			 Ball b = new Ball(me.getMass(), ((FixedHook)e).getRadius(), ((FixedHook)e).getPosition(), -me.getSpeed());
 			 if (b.collide(me)) return b;
 		 }

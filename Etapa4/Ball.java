@@ -243,8 +243,25 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
     * 
     * @param	spring	resorte a adjuntar.
     */
+    @Override
    public void attachSpring(Spring spring) {
        springs.add(spring);
+   }
+   
+   /**
+    * Responde si <code>spring</code> es un resorte al cual se esta
+    * adjunto.
+    * 
+    * @param	spring	resorte a adjuntar.
+    * @return			<code>true</code> si esta adjunta a ese resorte
+    * 					<code>false</code> en caso contrario.
+    */
+   @Override
+   public boolean isAttachedTo(Spring spring) {
+	   for (Spring i: springs)
+			if (i == spring) return true;
+		
+		return false;
    }
    
    /**
@@ -255,7 +272,6 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    @Override
    public void detachSpring(Spring s) {
 	// TODO Auto-generated method stub
-	
    }
    
    /**

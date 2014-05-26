@@ -45,11 +45,40 @@ public class LabMenuListener implements ActionListener {
 		  JScrollBar sbMass 	= new JScrollBar(Adjustable.HORIZONTAL, 1, 0, 1, 100),	// value/10
 					sbRadius 	= new JScrollBar(Adjustable.HORIZONTAL, 10, 0, 1, 100),	// value/100
 					sbSpeed		= new JScrollBar(Adjustable.HORIZONTAL, 0, 0, -100, 100);	// value/10
+		  final String	vMass 	= 1+"",		//init value
+						vRadius = 10+"",	//init value
+						vSpeed	= 0+"";		//init value
+		  final JLabel	lMass 	= new JLabel("Mass: "+vMass),
+						lRadius = new JLabel("Radius: "+vRadius),
+						lSpeed	= new JLabel("Speed: "+vSpeed);
+		
 		  
 		  final JComponent[] comps = new JComponent[] {
-			  new JLabel("mass: "), new JLabel(""), sbMass,
-			  new JLabel("radius: "), new JLabel(""), sbRadius,
-			  new JLabel("speed: "), new JLabel(""), sbSpeed };
+			  lMass, sbMass,
+			  lRadius, sbRadius,
+			  lSpeed, sbSpeed };
+		  
+		  sbMass.addAdjustmentListener(
+			new AdjustmentListener() {
+				public void adjustmentValueChanged(AdjustmentEvent evt) {
+					lMass.setText("Mass: "+evt.getValue());
+				}
+			}
+		  );
+		  sbRadius.addAdjustmentListener(
+			new AdjustmentListener() {
+				public void adjustmentValueChanged(AdjustmentEvent evt) {
+					lRadius.setText("Radius: "+evt.getValue());
+				}
+			}
+		  );
+		  sbSpeed.addAdjustmentListener(
+			new AdjustmentListener() {
+				public void adjustmentValueChanged(AdjustmentEvent evt) {
+					lSpeed.setText("Speed: "+evt.getValue());
+				}
+			}
+		  );
 		  
 		  JOptionPane.showMessageDialog(null, comps, "New Ball",  JOptionPane.PLAIN_MESSAGE);
 		  
@@ -62,7 +91,20 @@ public class LabMenuListener implements ActionListener {
 	      world.repaintView();
       }
       if (text.equals("Fixed Hook")){
-    	  world.addElement(new FixedHook(0.1, 0.5));
+		  Object[] opts = {"Yes", "No"};
+          int ans = JOptionPane.showOptionDialog(null,
+					"Quiere que sea colisionable ?",
+					"New FixedHook",
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null,
+					opts,
+					opts[1]);
+		  if( ans == 1)
+			world.addElement(new FixedHook(0.1, 0.5));
+		  else
+			world.addElement(new FixedHook(0.1, 0.5, true));
+			
     	  world.repaintView();
       }
       if (text.equals("Spring")) {
@@ -72,8 +114,20 @@ public class LabMenuListener implements ActionListener {
 		  JScrollBar sbSteveness;	// Steve is THE answer ! STEVE STIFLER
 		  sbSteveness 	= new JScrollBar(Adjustable.HORIZONTAL, 1, 0, minSteveness, maxSteveness);
 		  sbSteveness.setBlockIncrement(1);
+		  
+		  final String vSteve	= 1+"";		//init value
+		  final JLabel	lSteve 	= new JLabel("Stifness: "+vSteve);
+		  
 		  final JComponent[] comps = new JComponent[] {
-			  new JLabel("Stifness: "), new JLabel(""), sbSteveness };
+			  lSteve, sbSteveness };
+		  
+		  sbSteveness.addAdjustmentListener(
+			new AdjustmentListener() {
+				public void adjustmentValueChanged(AdjustmentEvent evt) {
+					lSteve.setText("Stifness: "+evt.getValue());
+				}
+			}
+		  );
 			  
 		  JOptionPane.showMessageDialog(null, comps, "New Spring",  JOptionPane.PLAIN_MESSAGE);
 		  

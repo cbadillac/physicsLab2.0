@@ -7,27 +7,45 @@ public class FixedHook extends PhysicsElement implements SpringAttachable, Simul
     Double position;
     private ArrayList<Spring> springs;
     FixedHookView view;
+    boolean collidable;
     
     
 	private FixedHook() {
 		this(1.0,1);
 		// TODO Auto-generated constructor stub
 	}
-	
 	public FixedHook(double radius, double position){
 		super(id++);
 		this.position = position;
         this.ancho = radius;
+        this.collidable = false;
         springs = new ArrayList<Spring>();
         view = new FixedHookView(this);	
+	}
+	public FixedHook(double radius, double position, boolean collidable){
+		super(id++);
+		this.position = position;
+        this.ancho = radius;
+        this.collidable = collidable;
+        springs = new ArrayList<Spring>();
+        view = new FixedHookView(this);	
+	}
+	
+	public boolean isCollidable() {
+		return collidable;
 	}
 
 	@Override
 	public void attachSpring(Spring s) {
 		springs.add(s);
-		
 	}
-
+	@Override
+	public boolean isAttachedTo(Spring spring) {
+	   for (Spring i: springs)
+			if (i == spring) return true;
+		
+		return false;
+   }
 	@Override
 	public void detachSpring(Spring s) {
 		// TODO Auto-generated method stub

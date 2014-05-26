@@ -60,9 +60,11 @@ public class MouseListener extends MouseAdapter {
           // we dragged a spring, so we look for and attachable element near by  
          PhysicsElement element = world.findSpringElement(p.getX());
          if (element instanceof Spring) {
+			 if( ((SpringAttachable)currentElement).isAttachedTo((Spring)element))
+				return;
+				
             // we dragged a spring and it is near an attachable element,
             // so we hook it to a spring end.
-            
             Object[] opts = {"Yes", "No"};
             int ans = JOptionPane.showOptionDialog(null,
 					"Quiere adjuntar " + ((PhysicsElement)element).getDescription() + "?",
