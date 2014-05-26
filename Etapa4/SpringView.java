@@ -13,7 +13,7 @@ public class SpringView {
    private Stroke stroke;
    private Color color = Color.BLACK;
 
-   private Spring spring;   
+   private Spring spring;
 
    static {  // static initialization block. It creates a spring of length = 1.
       polyline.moveTo (xPoints[0], yPoints[0]);

@@ -61,8 +61,8 @@ public class MyWorld implements ActionListener {
    public MyWorld(PrintStream output){
       out = output;
       t = 0;
-      refreshPeriod = 0.06;      	// 60 [ms]
-      delta_t 	= 0.00001;          	// 0.01 [ms]
+      refreshPeriod = 0.06;     // 60 [ms]
+      delta_t 	= 0.00001;      // 0.01 [ms]
       elements 	= new ArrayList<PhysicsElement>();
       view 		= null;
       passingTime = new Timer((int)(refreshPeriod*1000), this);
@@ -71,7 +71,7 @@ public class MyWorld implements ActionListener {
    /**
     * Agrega un <code>PhysicsElement</code> a <code>MyWorld</code>.
     * 
-    * @param e		<code>PhysicsElement</code> a agregar.
+    * @param e	<code>PhysicsElement</code> a agregar.
     */
    public void addElement(PhysicsElement e) {
       elements.add(e);
@@ -245,7 +245,7 @@ public class MyWorld implements ActionListener {
     * 				en su defecto.
     */
    public Spring findSpringElement(double x) {
-	   for(PhysicsElement e: elements){
+	   for(PhysicsElement e: elements) {
 		   if(e.contains(x, 0) && (e instanceof Spring)) return (Spring)e;
 	   }
 	   return null;

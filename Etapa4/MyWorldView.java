@@ -1,4 +1,4 @@
- import javax.swing.JPanel;
+import javax.swing.JPanel;
 import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -41,12 +41,6 @@ public class MyWorldView extends JPanel {
       addMouseMotionListener(mListener);
       addMouseListener(mListener);
    }
-
-// other methods.
-
-   public void repaintView(){
-	     repaint();
-	   }
 	   
    public void paintComponent(Graphics g){
 	  Graphics2D g2 = (Graphics2D)g;
