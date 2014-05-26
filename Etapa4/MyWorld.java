@@ -91,7 +91,10 @@ public class MyWorld implements ActionListener {
          if ( e instanceof Ball) {
             Ball b = (Ball) e;
             if ((b!=me) && b.collide(me)) return b;
-         }
+         }else if( e instanceof FixedHook) {
+			 Ball b = new Ball(me.getMass(), ((FixedHook)e).getRadius(), ((FixedHook)e).getPosition(), -me.getSpeed());
+			 if (b.collide(me)) return b;
+		 }
       return null;
    }
  

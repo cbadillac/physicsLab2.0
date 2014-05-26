@@ -93,8 +93,6 @@ public class FixedHook extends PhysicsElement implements SpringAttachable, Simul
 		position = x;
 		
 	}
-/* to be coded
-*/
 
 	@Override
 	public void computeNextState(double delta_t, MyWorld w) {

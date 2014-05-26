@@ -47,10 +47,9 @@ public class LabMenuListener implements ActionListener {
 					sbSpeed		= new JScrollBar(Adjustable.HORIZONTAL, 0, 0, -100, 100);	// value/10
 		  
 		  final JComponent[] comps = new JComponent[] {
-			  new JLabel("mass"), sbMass,
-			  new JLabel("radius"), sbRadius,
-			  new JLabel("speed"), sbSpeed
-		  };
+			  new JLabel("mass: "), new JLabel(""), sbMass,
+			  new JLabel("radius: "), new JLabel(""), sbRadius,
+			  new JLabel("speed: "), new JLabel(""), sbSpeed };
 		  
 		  JOptionPane.showMessageDialog(null, comps, "New Ball",  JOptionPane.PLAIN_MESSAGE);
 		  
@@ -73,14 +72,10 @@ public class LabMenuListener implements ActionListener {
 		  JScrollBar sbSteveness;	// Steve is THE answer ! STEVE STIFLER
 		  sbSteveness 	= new JScrollBar(Adjustable.HORIZONTAL, 1, 0, minSteveness, maxSteveness);
 		  sbSteveness.setBlockIncrement(1);
-		  //sCompression 	= new JScrollBar(Adjustable.HORIZONTAL, 1, 0, 1, 5);
-		  //sCompression.setBlockIncrement(1);
 		  final JComponent[] comps = new JComponent[] {
-			  new JLabel("Stifness"), sbSteveness
-			  //new JLabel("Compression"), sCompression
-		  };
+			  new JLabel("Stifness: "), new JLabel(""), sbSteveness };
+			  
 		  JOptionPane.showMessageDialog(null, comps, "New Spring",  JOptionPane.PLAIN_MESSAGE);
-		  //System.out.println("Debbug->St: " + sSteveness.getValue() + "Com: " + sCompression.getValue());
 		  
     	  world.addElement(new Spring(1.0, (double) sbSteveness.getValue()/10));
     	  world.repaintView();

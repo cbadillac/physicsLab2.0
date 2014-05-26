@@ -104,8 +104,8 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
     * @param delta_t	Delta de tiempo con que se calcula próxima posición.
     */
    public void computeNextState(double delta_t, MyWorld world) {
-     Ball b;  // Assumption: on collision we only change speed.   
-     if ((b=world.findCollidingBall(this))!= null){ /* elastic collision */
+     Ball b;  											// Assumption: on collision we only change speed.   
+     if ((b=world.findCollidingBall(this))!= null) {	// elastic collision
         speed_tPlusDelta=(speed_t*(mass-b.getMass())+2*b.getMass()*b.getSpeed())/(mass+b.getMass());
         pos_tPlusDelta = pos_t;
      } else {
