@@ -8,8 +8,6 @@ public class Spring extends PhysicsElement implements Simulateable{
    private double aLoosePosition, bLoosePosition;
    private double xLoosePosition1, xLoosePosition2;
    
-   
-   
    private SpringView view;
 
    private Spring(){   // nobody can create a block without state
@@ -103,7 +101,6 @@ public class Spring extends PhysicsElement implements Simulateable{
   @Override
    public void draw(Graphics2D g) {
 	   view.draw(g);
-	
    }
   
   @Override
@@ -116,8 +113,6 @@ public class Spring extends PhysicsElement implements Simulateable{
 	   aLoosePosition += (xLoosePosition2 - xLoosePosition1);
 	   bLoosePosition += (xLoosePosition2 - xLoosePosition1);
 	   xLoosePosition1 = xLoosePosition2;
-	   
-	
    }
   
    @Override
@@ -128,9 +123,5 @@ public class Spring extends PhysicsElement implements Simulateable{
    @Override
    public void updateState() {
 	   // TODO Auto-generated method stub
-	
    }
-
-	
-
 }

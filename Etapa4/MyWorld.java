@@ -21,8 +21,8 @@ public class MyWorld implements ActionListener {
    public MyWorld(PrintStream output){
       out = output;
       t = 0;
-      refreshPeriod = 0.06;      // 60 [ms]
-      delta_t = 0.00001;          // 0.01 [ms]
+      refreshPeriod = 0.06;      	// 60 [ms]
+      delta_t = 0.00001;          	// 0.01 [ms]
       elements = new ArrayList<PhysicsElement>();
       view = null;
       passingTime = new Timer((int)(refreshPeriod*1000), this);    
@@ -71,13 +71,32 @@ public class MyWorld implements ActionListener {
    public void repaintView(){
       view.repaintView();
    }
+   
+   public PhysicsElement find(double x, double y) {
+	   PhysicsElement someSpring = null;
+      for (PhysicsElement e: elements) {
+    	  if (e.contains(x,y)) {
+			  if( e instanceof	 Spring)
+				someSpring = e;
+			  else	
+				return e;
+          }
+      }
+    	  
+      return someSpring;
+   }
 
    public Ball findCollidingBall(Ball me) {
       for (PhysicsElement e: elements)
          if ( e instanceof Ball) {
             Ball b = (Ball) e;
             if ((b!=me) && b.collide(me)) return b;
-         }
+         }else if( e instanceof FixedHook) {
+			 if( !((FixedHook)e).isCollidable()) return null;
+			 
+			 Ball b = new Ball(me.getMass(), ((FixedHook)e).getRadius(), ((FixedHook)e).getPosition(), -me.getSpeed());
+			 if (b.collide(me)) return b;
+		 }
       return null;
    }
  
@@ -85,20 +104,16 @@ public class MyWorld implements ActionListener {
       return elements;
    }
    
-   public PhysicsElement find(double x, double y) {
-      for (PhysicsElement e: elements){    	  
-    	  if (e.contains(x,y)){
-    		  
-    		  return e;
-          }
-      }
-    	  
-      return null;
-   }
    public SpringAttachable findAttachableElement(double x) {
 	   for(PhysicsElement e: elements){
 		   if(e.contains(x, 0) && !(e instanceof Spring)) return (SpringAttachable)e;
 	   }
 	   return null;
-   }  
+   }
+   public Spring findSpringElement(double x) {
+	   for(PhysicsElement e: elements){
+		   if(e.contains(x, 0) && (e instanceof Spring)) return (Spring)e;
+	   }
+	   return null;
+   } 
 } 

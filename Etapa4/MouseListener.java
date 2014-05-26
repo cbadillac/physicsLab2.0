@@ -1,4 +1,5 @@
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import java.awt.event.*;
 import java.awt.event.MouseAdapter;
 import java.awt.*;
@@ -7,9 +8,11 @@ import java.awt.geom.Point2D;
 public class MouseListener extends MouseAdapter {
    private MyWorld world;
    private PhysicsElement currentElement;
+   
    public MouseListener (MyWorld w){
       world = w;
-   } 
+   }
+   /*
    public void mouseMoved(MouseEvent e) {
       Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
       
@@ -27,41 +30,66 @@ public class MouseListener extends MouseAdapter {
          currentElement.setSelected();
       }
       world.repaintView();
+   }*/
+   public void mousePressed(MouseEvent e) {
+	   Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
+	      
+	  MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters
+	  PhysicsElement newElement = world.find(p.getX(), p.getY());
+	  
+	  System.out.println(newElement);
+	  
+	  this.currentElement = newElement;
+	  currentElement.setSelected();
    }
    public void mouseDragged(MouseEvent e) {
 	   Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
 	      
 	      MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters
-	      PhysicsElement newElement = world.find(p.getX(), p.getY()); 
-	      if (newElement != null){
-	    	  newElement.dragTo(p.getX());
+	      
+	      if (currentElement != null) {			  
+	    	  currentElement.dragTo(p.getX());
 	    	  world.repaintView();
 	      }
-      
    }
    public void mouseReleased(MouseEvent e) {
       if (currentElement == null) return;
-      if (currentElement instanceof Spring) {
+      if (currentElement instanceof SpringAttachable) {
          Point2D.Double p= new Point2D.Double(0,0);
          MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);
-
           // we dragged a spring, so we look for and attachable element near by  
-         SpringAttachable element = world.findAttachableElement(p.getX());
-         System.out.println(element);
-         if (element != null) {
+         PhysicsElement element = world.findSpringElement(p.getX());
+         if (element instanceof Spring) {
+			 if( ((SpringAttachable)currentElement).isAttachedTo((Spring)element))
+				return;
+				
             // we dragged a spring and it is near an attachable element,
             // so we hook it to a spring end.
-            Spring spring = (Spring) currentElement;
-            double a=spring.getAendPosition();
-            if (a==p.getX())
-               spring.attachAend(element);
-            double b=spring.getBendPosition();
-            if (b==p.getX())
-               spring.attachBend(element);
-          }
-      }    
+            Object[] opts = {"Yes", "No"};
+            int ans = JOptionPane.showOptionDialog(null,
+					"Quiere adjuntar " + ((PhysicsElement)element).getDescription() + "?",
+					"Adjuntar",
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null,
+					opts,
+					opts[0]);
+            
+            if (ans == 0) { //	"Yes"
+				Spring spring = (Spring) element;
+				double a=spring.getAendPosition();
+				if (currentElement.contains(a,0))
+				   spring.attachAend((SpringAttachable)currentElement);
+				double b=spring.getBendPosition();
+				if (currentElement.contains(b,0))
+				   spring.attachBend((SpringAttachable)currentElement);
+			}
+         }
+      }
+       
       currentElement.setReleased();
       currentElement = null;
+      
       world.repaintView();
    }
 }

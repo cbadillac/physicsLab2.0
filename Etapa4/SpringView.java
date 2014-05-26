@@ -1,5 +1,5 @@
 import java.awt.*;
-import java.awt.geom.*;
+import java.awt.geom.*; 
 
 public class SpringView {
    private static final double xPoints[]={0,0.10, 0.125, 0.175, 0.225, 0.275, 0.325, 
@@ -11,6 +11,7 @@ public class SpringView {
                       new Path2D.Double(Path2D.WIND_EVEN_ODD,xPoints.length);
    private Path2D.Double shape;
    private Stroke stroke;
+   private Color color = Color.BLACK;
 
    private Spring spring;   
 
@@ -20,39 +21,44 @@ public class SpringView {
          polyline.lineTo(xPoints[index], yPoints[index]);
    }
    public SpringView(Spring spring) {
-      this.spring = spring;
+      this.spring 	= spring;
+      double x 	= spring.getBendPosition() - spring.getAendPosition();
       AffineTransform at = AffineTransform.getTranslateInstance(0,0);
-      double  x = spring.getBendPosition() - spring.getAendPosition();
+      stroke 	= new BasicStroke(0.02f);
+      shape 	= (Path2D.Double) at.createTransformedShape(polyline);
+      
       at.rotate(x, 0);
       at.scale(Math.abs(x), spring.getRestLength());
-      shape = (Path2D.Double) at.createTransformedShape(polyline);
-      stroke = new BasicStroke(0.02f);
    }
-   public void updateView (Graphics2D g){
-      double ax=spring.getAendPosition();
-      double xa_b = spring.getBendPosition() - spring.getAendPosition();
+   public void updateView (Graphics2D g) {
+      double ax	= spring.getAendPosition();
+      double xa_b 	= spring.getBendPosition() - spring.getAendPosition();
       AffineTransform at = AffineTransform.getTranslateInstance(ax, 0);
       at.rotate(xa_b, 0);
       at.scale(Math.abs(xa_b),  spring.getRestLength());
       shape = (Path2D.Double) at.createTransformedShape(polyline);
+      
       if (Math.abs(xa_b) < spring.getRestLength())
-         g.setColor(Color.BLACK);
-      else
          g.setColor(Color.RED);
+      else
+         g.setColor(color);
+      
       g.setStroke(stroke);
       g.draw(shape);
    }
-   public boolean contains(double x, double y){
+   public boolean contains(double x, double y) {
       return shape.getBounds2D().contains(x,y);
    }
    public void setSelected() {
-      /*    */
+	   color = Color.RED;
+	   //TODO updateView
    }
    public void setReleased() {
-      /* .... */
+	   color = Color.BLACK;
+	   //TODO updateView
    }
    
-   public void draw(Graphics2D g){
+   public void draw(Graphics2D g) {
 	   double ax=spring.getAendPosition();
 	      double xa_b = spring.getBendPosition() - spring.getAendPosition();
 	      AffineTransform at = AffineTransform.getTranslateInstance(ax, 0);
@@ -60,9 +66,9 @@ public class SpringView {
 	      at.scale(Math.abs(xa_b),  spring.getRestLength());
 	      shape = (Path2D.Double) at.createTransformedShape(polyline);
 	      if (Math.abs(xa_b) < spring.getRestLength())
-	         g.setColor(Color.BLACK);
-	      else
 	         g.setColor(Color.RED);
+	      else
+	         g.setColor(Color.BLACK);
 	      g.setStroke(stroke);
 	      g.draw(shape);
    }
