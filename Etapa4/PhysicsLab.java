@@ -82,8 +82,6 @@ class PhysicsLab_GUI extends JFrame {
       JMenuItem subMenuDeltaTime = new JMenuItem("Delta time");
       subMenuDeltaTime.addActionListener(menu_l);
       menuSimulator.add(subMenuDeltaTime);
-      
-/* ...*/
 
       return mb;          
    }

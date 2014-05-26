@@ -2,13 +2,21 @@ import java.util.*;
 import java.awt.*;
 
 /**
- * Clase para crear instancias del objeto físico <code>Ball</code>, 
- * simulando el comportamiento de una pelota con choque elástico. Es
+ * Clase para crear instancias del objeto fisico <code>Ball</code>, 
+ * simulando el comportamiento de una pelota con choque elsstico. Es
  * visualizable en una GUI al implementar <i>Simulateable</i>, pudiendo
  * dibujarse a si misma.
  * 
- * Almacena un ID, su masa, radio, posición y velocidad, su vista y valores
- * necesarios para computar su próximo estado.
+ * Almacena:
+ * <ul>
+ * 	<li>Identificador</li>
+ * 	<li>masa</li>
+ * 	<li>radio</li>
+ * 	<li>posicion</li>
+ * 	<li>velocidad</li>
+ * 	<li><i>View</i></li>
+ * 	<li>valores necesarios para computar su proximo estado</li>
+ * </ul>
  * 
  * @author Agustin Gonzalez
  * @author Cristobal Badilla
@@ -48,13 +56,13 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    }
    
    /**
-    * Sobrecarga de constructor. Permite asignar masa, radio, posición inicial
-    * y velocidad incial deseadas. El ID que se asigna a la pelota es el
-    * siguiente entero al ID asignado anteriormente.
+    * Permite asignar masa, radio, posicion inicial y velocidad incial
+    * deseadas. El ID que se asigna a la pelota es el siguiente entero
+    * al ID asignado anteriormente.
     * 
     * @param mass		masa de la pelota [kg]
     * @param radius	radio de la pelota [m]
-    * @param positon	posición inicial de la pelota [m]
+    * @param positon	posicion inicial de la pelota [m]
     * @param speed		rapidez inicial de la pelota [m/s]
     */
    public Ball(double mass, double radius, double position, double speed){
@@ -83,25 +91,25 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    }
    
    /**
-    * Permite obtener posición actúal de la pelota.
+    * Permite obtener posicion actual de la pelota.
     */
    public double getPosition() {
       return pos_t;
    }
    
    /**
-    * Permite obtener rapidez actúal de la pelota.
+    * Permite obtener rapidez actual de la pelota.
     */
    public double getSpeed() {
       return speed_t;
    }
    
    /**
-    * Permite computar próximo estado de la pelota, distinguiendo entre si
-    * está chocando o no.
+    * Permite computar proximo estado de la pelota, distinguiendo entre si
+    * esta chocando o no.
     * 
-    * @param world		Objeto con los demas objetos físicos creados.
-    * @param delta_t	Delta de tiempo con que se calcula próxima posición.
+    * @param world		Objeto con los demas objetos fisicos creados.
+    * @param delta_t	Delta de tiempo con que se calcula proxima posicion.
     */
    public void computeNextState(double delta_t, MyWorld world) {
      Ball b;  											// Assumption: on collision we only change speed.   
@@ -118,8 +126,8 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    /**
     * Permite saber si pelota esta colisionando con otra pelota <code>b</code>.
     * 
-    * @param b	<code>Ball</code> con la que se evalua colisión.
-    * @return 	<code>true</code> si la pelota está chocando con <code>b<code>.
+    * @param b	<code>Ball</code> con la que se evalua colision.
+    * @return 	<code>true</code> si la pelota esta chocando con <code>b<code>.
     * 			<code>false</code> si no.
     */
    public boolean collide(Ball b) {
@@ -137,8 +145,8 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    }
    
    /**
-    * Actualiza estado actúal de la pelota, obteniendolo de los valores del
-    * próximo estado calculado luego de una posible colisión.
+    * Actualiza estado actual de la pelota, obteniendolo de los valores del
+    * proximo estado calculado luego de una posible colision.
     */
    public void updateState(){
      pos_t = pos_tPlusDelta;
@@ -148,19 +156,19 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    /**
     * Actualiza vista de <code>BallView</code> encapsulado por la clase.
     * 
-    * @param g	...
+    * @param g	<code>Graphics2D</code> a actualizar
     */
    public void updateView (Graphics2D g) {   // NEW
      view.updateView(g);  // update this Ball's view in Model-View-Controller design pattern     
    }
    
    /**
-    * Permite saber si un punto <i>(x,y)</i> está contenido en el círculo que
+    * Permite saber si un punto <i>(x,y)</i> esta contenido en el circulo que
     * representa a la pelota.
     * 
     * @param x 	coordenada <i>x</i>
     * @param y 	coordenada <i>y</i>
-    * @return 		<code>true</code> si punto <i>(x,y)</i> pertenece al círculo de la pelota.
+    * @return 		<code>true</code> si punto <i>(x,y)</i> pertenece al circulo de la pelota.
     * 				<code>false</code> en caso contrario.
     */
    public boolean contains(double x, double y) {
@@ -200,6 +208,8 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    }
    
    /**
+    * Asigna nueva posicion.
+    * 
     * @param x		coordenada <i>x</i>
     */
    public void dragTo(double x){
@@ -207,7 +217,7 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    }
    
    /**
-    * Retorna descripción de la pelota.
+    * Retorna descripcion de la pelota.
     * 
     * @return	"Ball_<code>ID</code>:x"
     */
@@ -275,7 +285,7 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
    }
    
    /**
-    * Calcula la magnitud de un número.
+    * Calcula la magnitud de un numero.
     * 
     * @param	a	número real del que se obtiene magnitud
     * @return		Devuele magnitud de parámetro <code>a</code>

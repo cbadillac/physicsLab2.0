@@ -32,9 +32,10 @@ public class MouseListener extends MouseAdapter {
       world.repaintView();
    }*/
    public void mousePressed(MouseEvent e) {
-	   Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
+	   if(world.isRunning()) return;
+	   Point2D.Double p = new Point2D.Double(0,0); 	// Change mouse coordenates from
 	      
-	  MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters
+	  MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);	// pixels to meters
 	  PhysicsElement newElement = world.find(p.getX(), p.getY());
 	  
 	  System.out.println(newElement);
@@ -43,6 +44,7 @@ public class MouseListener extends MouseAdapter {
 	  currentElement.setSelected();
    }
    public void mouseDragged(MouseEvent e) {
+	   if(world.isRunning()) return;
 	   Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
 	      
 	      MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters
