@@ -19,8 +19,7 @@ public class FixedHook extends PhysicsElement implements SpringAttachable, Simul
 		this.position = position;
         this.ancho = radius;
         springs = new ArrayList<Spring>();
-        view = new FixedHookView(this);
-		
+        view = new FixedHookView(this);	
 	}
 
 	@Override

@@ -60,6 +60,8 @@ public class MouseListener extends MouseAdapter {
 
           // we dragged a spring, so we look for and attachable element near by  
          SpringAttachable element = world.findAttachableElement(p.getX());
+         if (element == null)
+			element = world.findAttachableElement(p.getX() - ((Spring)currentElement).getRestLength());
          if (element != null) {
             // we dragged a spring and it is near an attachable element,
             // so we hook it to a spring end.
