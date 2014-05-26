@@ -51,7 +51,7 @@ public class Ball extends PhysicsElement implements SpringAttachable, Simulateab
     * siguiente entero al ID asignado anteriormente.
     * 
     * @param mass		masa de la pelota [kg]
-    * @param radius		radio de la pelota [m]
+    * @param radius	radio de la pelota [m]
     * @param positon	posición inicial de la pelota [m]
     * @param speed		rapidez inicial de la pelota [m/s]
     */

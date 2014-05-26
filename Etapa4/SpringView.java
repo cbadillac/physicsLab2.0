@@ -51,9 +51,11 @@ public class SpringView {
    }
    public void setSelected() {
 	   color = Color.RED;
+	   //TODO updateView
    }
    public void setReleased() {
 	   color = Color.BLACK;
+	   //TODO updateView
    }
    
    public void draw(Graphics2D g) {

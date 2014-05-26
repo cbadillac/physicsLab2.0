@@ -54,15 +54,12 @@ public class MouseListener extends MouseAdapter {
    }
    public void mouseReleased(MouseEvent e) {
       if (currentElement == null) return;
-      if (currentElement instanceof Spring) {
+      if (currentElement instanceof SpringAttachable) {
          Point2D.Double p= new Point2D.Double(0,0);
          MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);
-
           // we dragged a spring, so we look for and attachable element near by  
-         SpringAttachable element = world.findAttachableElement(p.getX());
-         if (element == null)
-			element = world.findAttachableElement(p.getX() - ((Spring)currentElement).getRestLength());
-         if (element != null) {
+         PhysicsElement element = world.findSpringElement(p.getX());
+         if (element instanceof Spring) {
             // we dragged a spring and it is near an attachable element,
             // so we hook it to a spring end.
             
@@ -77,13 +74,15 @@ public class MouseListener extends MouseAdapter {
 					opts[0]);
             
             if (ans == 0) { //	"Yes"
-				Spring spring = (Spring) currentElement;
+				Spring spring = (Spring) element;
 				double a=spring.getAendPosition();
-				if (a==p.getX())
-				   spring.attachAend(element);
+				if (currentElement.contains(a,0)) {
+				   spring.attachAend((SpringAttachable)currentElement);
+				   System.out.println("asdasd>>>>");}
 				double b=spring.getBendPosition();
-				if (b==p.getX())
-				   spring.attachBend(element);
+				if (currentElement.contains(b,0)){
+				   spring.attachBend((SpringAttachable)currentElement);
+				   System.out.println("asdasd<<<<<");}
 			}
          }
       }

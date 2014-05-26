@@ -100,5 +100,11 @@ public class MyWorld implements ActionListener {
 		   if(e.contains(x, 0) && !(e instanceof Spring)) return (SpringAttachable)e;
 	   }
 	   return null;
-   }  
+   }
+   public Spring findSpringElement(double x) {
+	   for(PhysicsElement e: elements){
+		   if(e.contains(x, 0) && (e instanceof Spring)) return (Spring)e;
+	   }
+	   return null;
+   } 
 } 
