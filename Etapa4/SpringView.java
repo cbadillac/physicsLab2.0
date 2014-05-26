@@ -18,7 +18,7 @@ public class SpringView {
    static {  // static initialization block. It creates a spring of length = 1.
       polyline.moveTo (xPoints[0], yPoints[0]);
       for (int index = 1; index < xPoints.length;index++)
-         polyline.lineTo(xPoints[index], yPoints[index]);
+		polyline.lineTo(xPoints[index], yPoints[index]);
    }
    public SpringView(Spring spring) {
       this.spring 	= spring;
@@ -59,18 +59,21 @@ public class SpringView {
    }
    
    public void draw(Graphics2D g) {
-	   double ax=spring.getAendPosition();
-	      double xa_b = spring.getBendPosition() - spring.getAendPosition();
-	      AffineTransform at = AffineTransform.getTranslateInstance(ax, 0);
-	      at.rotate(xa_b, 0);
-	      at.scale(Math.abs(xa_b),  spring.getRestLength());
-	      shape = (Path2D.Double) at.createTransformedShape(polyline);
-	      if (Math.abs(xa_b) < spring.getRestLength())
-	         g.setColor(Color.RED);
-	      else
-	         g.setColor(Color.BLACK);
-	      g.setStroke(stroke);
-	      g.draw(shape);
+	  double ax=spring.getAendPosition();
+	   
+	  double xa_b = spring.getBendPosition() - spring.getAendPosition();
+	  AffineTransform at = AffineTransform.getTranslateInstance(ax, 0);
+	  at.rotate(xa_b, 0);
+	  at.scale(Math.abs(xa_b),  spring.getRestLength());
+	  shape = (Path2D.Double) at.createTransformedShape(polyline);
+	  
+	  if (Math.abs(xa_b) < spring.getRestLength())
+		 g.setColor(Color.RED);
+	  else
+		 g.setColor(Color.BLACK);
+		 
+	  g.setStroke(stroke);
+	  g.draw(shape);
    }
 
 }

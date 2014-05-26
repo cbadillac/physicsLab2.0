@@ -60,8 +60,7 @@ class PhysicsLab_GUI extends JFrame {
       JMenuItem menuScenario = new JMenuItem("My scenario");
       menuScenario.addActionListener(menu_l);
       subMenu.add(menuScenario);
-      
-	/*....*/
+
       menu = new JMenu("MyWorld");
       mb.add(menu);
       menuItem = new JMenuItem("Start");
@@ -82,8 +81,6 @@ class PhysicsLab_GUI extends JFrame {
       JMenuItem subMenuDeltaTime = new JMenuItem("Delta time");
       subMenuDeltaTime.addActionListener(menu_l);
       menuSimulator.add(subMenuDeltaTime);
-      
-/* ...*/
 
       return mb;          
    }

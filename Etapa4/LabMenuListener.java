@@ -13,12 +13,23 @@ public class LabMenuListener implements ActionListener {
       String text = menuItem.getText();
       System.out.println(text);
       
+      if (text.equals("Stop")) {
+    	  world.stop();
+      }
+      if( world.isRunning()) {
+		  final JComponent[] comps = new JComponent[] {
+			  new JLabel("Debe detener la simualcion antes de hacer esta accion.")
+		  };
+		  JOptionPane.showMessageDialog(null, comps, "Simulation",  JOptionPane.PLAIN_MESSAGE);
+		  return;
+	  }
+      
       // Actions associated to main manu options
       if (text.equals("My scenario")) {  // here you define Etapa2's configuration
-    	  double mass = 1.0;      // 1 [kg] 
-	      double radius = 0.1;    // 10 [cm] 
-	      double position = 0.5;  // 1 [m] 
-	      double speed = 0;       // 0.5 [m/s]
+    	  double mass 		= 1.0;  // 1 [kg] 
+	      double radius 	= 0.1;  // 10 [cm] 
+	      double position 	= 0.5;  // 1 [m] 
+	      double speed 	= 0;   	// 0.5 [m/s]
 	      Ball b0 = new Ball(mass, radius, position, speed);
 	      Ball b1 = new Ball(mass,radius,1,0);
 	      Ball b2 = new Ball(mass,radius,3,0);
@@ -42,15 +53,15 @@ public class LabMenuListener implements ActionListener {
       }
       if (text.equals("Ball")) {
 		  
-		  JScrollBar sbMass 	= new JScrollBar(Adjustable.HORIZONTAL, 1, 0, 1, 100),	// value/10
-					sbRadius 	= new JScrollBar(Adjustable.HORIZONTAL, 10, 0, 1, 100),	// value/100
-					sbSpeed		= new JScrollBar(Adjustable.HORIZONTAL, 0, 0, -100, 100);	// value/10
-		  final String	vMass 	= 1+"",		//init value
-						vRadius = 10+"",	//init value
-						vSpeed	= 0+"";		//init value
-		  final JLabel	lMass 	= new JLabel("Mass: "+vMass),
-						lRadius = new JLabel("Radius: "+vRadius),
-						lSpeed	= new JLabel("Speed: "+vSpeed);
+		  JScrollBar sbMass 	= new JScrollBar(Adjustable.HORIZONTAL, 1, 0, 1, 100),		// value/10
+					sbRadius 	= new JScrollBar(Adjustable.HORIZONTAL, 10, 0, 1, 20),		// value/100
+					sbSpeed		= new JScrollBar(Adjustable.HORIZONTAL, 0, 0, -50, 50);		// value/10
+		  final String	vMass 	= 1+"",		//init value [kg]
+						vRadius = 10+"",	//init value [cm]
+						vSpeed	= 0+"";		//init value [m/s]
+		  final JLabel	lMass 	= new JLabel("Mass: "  +vMass  +" [kg]"),
+						lRadius = new JLabel("Radius: "+vRadius+" [cm]"),
+						lSpeed	= new JLabel("Speed: " +vSpeed +" [m/s]");
 		
 		  
 		  final JComponent[] comps = new JComponent[] {
@@ -61,31 +72,31 @@ public class LabMenuListener implements ActionListener {
 		  sbMass.addAdjustmentListener(
 			new AdjustmentListener() {
 				public void adjustmentValueChanged(AdjustmentEvent evt) {
-					lMass.setText("Mass: "+evt.getValue());
+					lMass.setText("Mass: "+evt.getValue()/10 +" [kg]");
 				}
 			}
 		  );
 		  sbRadius.addAdjustmentListener(
 			new AdjustmentListener() {
 				public void adjustmentValueChanged(AdjustmentEvent evt) {
-					lRadius.setText("Radius: "+evt.getValue());
+					lRadius.setText("Radius: "+evt.getValue() +" [cm]");
 				}
 			}
 		  );
 		  sbSpeed.addAdjustmentListener(
 			new AdjustmentListener() {
 				public void adjustmentValueChanged(AdjustmentEvent evt) {
-					lSpeed.setText("Speed: "+evt.getValue());
+					lSpeed.setText("Speed: "+evt.getValue()/10 +" [m/s]");
 				}
 			}
 		  );
 		  
 		  JOptionPane.showMessageDialog(null, comps, "New Ball",  JOptionPane.PLAIN_MESSAGE);
 		  
-		  double mass 		= (double) sbMass.getValue()/10;   // 1 [kg] 
-	      double radius	= (double) sbRadius.getValue()/100;   // 10 [cm] 
-	      double position 	= 1.0; 	 // 1 [m] 
-	      double speed 	= (double) sbSpeed.getValue()/10;     // 0.5 [m/s]
+		  double mass 		= (double) sbMass.getValue()/10;      // [kg] 
+	      double radius	= (double) sbRadius.getValue()/100;   // [cm] 
+	      double position 	= 1.0; 	 							   // 1 [m] 
+	      double speed 	= (double) sbSpeed.getValue()/10;     // [m/s]
 		
 	      world.addElement(new Ball(mass, radius, position, speed));
 	      world.repaintView();
@@ -108,7 +119,7 @@ public class LabMenuListener implements ActionListener {
     	  world.repaintView();
       }
       if (text.equals("Spring")) {
-		  int maxSteveness = 100,	// value / 10
+		  int maxSteveness	 = 10,	// value / 10
 				minSteveness = 1;
 		  
 		  JScrollBar sbSteveness;	// Steve is THE answer ! STEVE STIFLER
@@ -116,7 +127,7 @@ public class LabMenuListener implements ActionListener {
 		  sbSteveness.setBlockIncrement(1);
 		  
 		  final String vSteve	= 1+"";		//init value
-		  final JLabel	lSteve 	= new JLabel("Stifness: "+vSteve);
+		  final JLabel	lSteve 	= new JLabel("Stifness: "+vSteve+" [kg/s^2]");
 		  
 		  final JComponent[] comps = new JComponent[] {
 			  lSteve, sbSteveness };
@@ -124,7 +135,7 @@ public class LabMenuListener implements ActionListener {
 		  sbSteveness.addAdjustmentListener(
 			new AdjustmentListener() {
 				public void adjustmentValueChanged(AdjustmentEvent evt) {
-					lSteve.setText("Stifness: "+evt.getValue());
+					lSteve.setText("Stifness: "+evt.getValue()/10+" [kg/s^2]");
 				}
 			}
 		  );
@@ -138,9 +149,6 @@ public class LabMenuListener implements ActionListener {
       // Actions associated to MyWorld submenu
       if (text.equals("Start")) {
     	  world.start();
-      }
-      if (text.equals("Stop")) {
-    	  world.stop();
       }
       if (text.equals("Delta time")) {
          String data = JOptionPane.showInputDialog("Enter delta t [s]");

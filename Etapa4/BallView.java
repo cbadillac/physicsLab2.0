@@ -5,8 +5,12 @@ import javax.swing.JPanel;
 
 /**
  * Determina el <code>View</code> de <code>Ball</code> usando la
- * biblioteca <code>awt</code> de Java. Almacena color, forma y la
- * pelota que representa.
+ * biblioteca <code>awt</code> de Java. Almacena:
+ * <ul>
+ * 	<li>color</li>
+ * 	<li>forma</li>
+ * 	<li>pelota que representa</li>
+ * </ul>
  * 
  * @author Agustin Gonzalez
  * @author Cristobal Badilla
