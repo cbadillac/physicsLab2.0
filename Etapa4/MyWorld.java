@@ -68,15 +68,6 @@ public class MyWorld implements ActionListener {
       n = false;
    }
    
-   public boolean eatN() {
-	   boolean ret = n;
-	   n = (n)?!n:n;
-	   return ret;
-   }
-   public void nPressed() {
-	   n = true;
-   }
-   
    /**
     * Agrega un <code>PhysicsElement</code> a <code>MyWorld</code>.
     * 
