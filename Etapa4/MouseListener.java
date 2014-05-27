@@ -1,7 +1,6 @@
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 import java.awt.event.*;
-import java.awt.event.MouseAdapter;
 import java.awt.*;
 import java.awt.geom.Point2D;
 

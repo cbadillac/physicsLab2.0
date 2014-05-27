@@ -1,7 +1,6 @@
 import javax.swing.JPanel;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.KeyAdapter;
 import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -9,7 +8,7 @@ import java.awt.geom.*;
 import java.awt.*;
 import java.util.*;
 
-public class MyWorldView extends JPanel{ 
+public class MyWorldView extends JPanel { 
 	// BEGIN declarations to use metric coordinate system (not pixels)
 	   public static int WIDTH 	= 1100;	// in pixels
 	   public static int HEIGHT 	= 150;	// in pixels
@@ -37,21 +36,18 @@ public class MyWorldView extends JPanel{
 //....
    private MyWorld world;
    private MouseListener mListener;
-   private KeyListener	kListener;
    
    public MyWorldView(MyWorld w){
       world 	= w;
       mListener = new MouseListener(w);
       addMouseMotionListener(mListener);
       addMouseListener(mListener);
-      kListener = new KeyAdapter() {
-		  public void keyTyped(KeyEvent e) {}
-		  public void keyReleased(KeyEvent e) {}
-		  public void keyPressed(KeyEvent e) {
-			  System.out.println(e+"<<<<<");
-		  }
-	  };
-	  addKeyListener(kListener);
+	  addKeyListener( new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				System.out.println("<<<<<");
+			}
+		  });
    }
 
    public void repaintView(){
