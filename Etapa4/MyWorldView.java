@@ -1,4 +1,7 @@
 import javax.swing.JPanel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -34,12 +37,21 @@ public class MyWorldView extends JPanel{
 //....
    private MyWorld world;
    private MouseListener mListener;
+   private KeyListener	kListener;
    
    public MyWorldView(MyWorld w){
       world 	= w;
       mListener = new MouseListener(w);
       addMouseMotionListener(mListener);
       addMouseListener(mListener);
+      kListener = new KeyAdapter() {
+		  public void keyTyped(KeyEvent e) {}
+		  public void keyReleased(KeyEvent e) {}
+		  public void keyPressed(KeyEvent e) {
+			  System.out.println(e+"<<<<<");
+		  }
+	  };
+	  addKeyListener(kListener);
    }
 
    public void repaintView(){

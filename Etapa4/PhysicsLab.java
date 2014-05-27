@@ -32,9 +32,7 @@ class PhysicsLab_GUI extends JFrame {
       add(worldView);  
 //    createConfiguration(world);
       worldView.enableMouseListener();
-      
-      /*  .....   */;
-   }
+}
 
    public JMenuBar createLabMenuBar(LabMenuListener menu_l) {
       JMenuBar mb = new JMenuBar();
@@ -86,14 +84,14 @@ class PhysicsLab_GUI extends JFrame {
    }
    
    private void createConfiguration(MyWorld world) {  // Please note how similar it is to "Etapa 4" of T1
-	      double mass 		= 1.0;      // 1 [kg] 
-	      double radius 	= 0.1;    	// 10 [cm] 
-	      double position 	= 0.0;  	// 1 [m] 
-	      double speed 	= 0.5;     	// 0.5 [m/s]
-	      Ball b0 = new Ball(mass, radius, position, speed);
-	      Ball b1 = new Ball(mass, radius, 2.0, 0);
-	      
-	      world.addElement(b0);
-	      world.addElement(b1);
-	   }
+	  double mass 		= 1.0;      // 1 [kg] 
+	  double radius 	= 0.1;    	// 10 [cm] 
+	  double position 	= 0.0;  	// 1 [m] 
+	  double speed 	= 0.5;     	// 0.5 [m/s]
+	  Ball b0 = new Ball(mass, radius, position, speed);
+	  Ball b1 = new Ball(mass, radius, 2.0, 0);
+	  
+	  world.addElement(b0);
+	  world.addElement(b1);
+	}
 }
