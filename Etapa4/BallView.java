@@ -71,7 +71,7 @@ public class BallView {
     * Asigna el color <i>rojo</i> al relleno del circulo.
     */
    public void setSelected (){
-      color = Color.RED;
+      color = Color.YELLOW;
    }
    
    /**

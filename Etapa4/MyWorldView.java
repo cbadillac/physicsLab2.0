@@ -34,7 +34,7 @@ public class MyWorldView extends JPanel {
 //.....
 // The same as Stage 3.
 //....
-   private MyWorld world;
+   final private MyWorld world;
    private MouseListener mListener;
    
    public MyWorldView(MyWorld w){
@@ -42,16 +42,18 @@ public class MyWorldView extends JPanel {
       mListener = new MouseListener(w);
       addMouseMotionListener(mListener);
       addMouseListener(mListener);
-	  addKeyListener( new KeyAdapter() {
-			@Override
+      addKeyListener( new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
-				System.out.println("<<<<<");
+				if( e.getKeyChar() == 'n')
+					world.nPressed();
+					System.out.println("n pressed <<");
 			}
 		  });
    }
 
    public void repaintView(){
 	     repaint();
+	     requestFocus();	// gain focus for KeyListener
 	}
 	   
    public void paintComponent(Graphics g){

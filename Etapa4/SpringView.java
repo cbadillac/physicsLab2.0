@@ -50,7 +50,7 @@ public class SpringView {
       return shape.getBounds2D().contains(x,y);
    }
    public void setSelected() {
-	   color = Color.RED;
+	   color = Color.YELLOW;
 	   //TODO updateView
    }
    public void setReleased() {

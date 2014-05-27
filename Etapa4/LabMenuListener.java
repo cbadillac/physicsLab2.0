@@ -95,7 +95,7 @@ public class LabMenuListener implements ActionListener {
 		  
 		  double mass 		= (double) sbMass.getValue()/10;      // [kg] 
 	      double radius	= (double) sbRadius.getValue()/100;   // [cm] 
-	      double position 	= 1.0; 	 							   // 1 [m] 
+	      double position 	= 1.0; 	 							   // 1[m] 
 	      double speed 	= (double) sbSpeed.getValue()/10;     // [m/s]
 		
 	      world.addElement(new Ball(mass, radius, position, speed));

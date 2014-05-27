@@ -1,8 +1,6 @@
 import java.util.*;
 import java.io.*;
-
 import javax.swing.Timer;
-
 import java.awt.event.*;
 
 /**
@@ -36,6 +34,7 @@ public class MyWorld implements ActionListener {
    private double t;        		// simulation time
    private double delta_t;        // in seconds
    private double refreshPeriod;  // in seconds
+   private boolean n;
    
    /**
     * Constructor por defecto. Sólo asigna como salida
@@ -66,6 +65,16 @@ public class MyWorld implements ActionListener {
       elements 	= new ArrayList<PhysicsElement>();
       view 		= null;
       passingTime = new Timer((int)(refreshPeriod*1000), this);
+      n = false;
+   }
+   
+   public boolean eatN() {
+	   boolean ret = n;
+	   n = (n)?!n:n;
+	   return ret;
+   }
+   public void nPressed() {
+	   n = true;
    }
    
    /**
@@ -157,8 +166,18 @@ public class MyWorld implements ActionListener {
    /**
     * Pide a <code>view</code> redibujar el canvas.
     */
-   public void repaintView(){
+   public void repaintView() {
       view.repaintView();
+   }
+
+   /**
+    * Devuelve elementos agregados.
+    * 
+    * @return		<code>ArrayList<PhysicsElement></code> con los
+    * 				elementos agregados a <code>MyWorld</code>
+    */
+   public ArrayList<PhysicsElement> getPhysicsElements(){
+      return elements;
    }
    
    /**
@@ -175,11 +194,14 @@ public class MyWorld implements ActionListener {
     * 				ninguno, devuelve <code>null</code>
     */
    public PhysicsElement find(double x, double y) {
-	   PhysicsElement someSpring = null;
+	  PhysicsElement someSpring = null;
+	  
       for (PhysicsElement e: elements) {
     	  if (e.contains(x,y)) {
 			  if( e instanceof	 Spring)
 				someSpring = e;
+			  else if( eatN())
+			    continue;
 			  else	
 				return e;
           }
@@ -211,15 +233,6 @@ public class MyWorld implements ActionListener {
 			 if (b.collide(me)) return b;
 		 }
       return null;
-   }
-   /**
-    * Devuelve elementos agregados.
-    * 
-    * @return		<code>ArrayList<PhysicsElement></code> con los
-    * 				elementos agregados a <code>MyWorld</code>
-    */
-   public ArrayList<PhysicsElement> getPhysicsElements(){
-      return elements;
    }
    
    /**

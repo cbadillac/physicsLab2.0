@@ -27,7 +27,7 @@ public class FixedHookView {
 		   
 	   }
 	   public void setSelected (){
-	      color = Color.RED;
+	      color = Color.YELLOW;
 	   }
 	   public void setReleased() {
 	      color = Color.GREEN;
