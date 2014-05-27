@@ -191,8 +191,6 @@ public class MyWorld implements ActionListener {
     	  if (e.contains(x,y)) {
 			  if( e instanceof	 Spring)
 				someSpring = e;
-			  else if( eatN())
-			    continue;
 			  else	
 				return e;
           }

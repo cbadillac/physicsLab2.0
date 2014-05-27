@@ -44,9 +44,8 @@ public class MyWorldView extends JPanel {
       addMouseListener(mListener);
       addKeyListener( new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
-				if( e.getKeyChar() == 'n')
-					world.nPressed();
-					System.out.println("n pressed <<");
+				if( e.getKeyChar() == 'n');
+					//System.out.println("n pressed <<");
 			}
 		  });
    }
